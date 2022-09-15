@@ -14,10 +14,6 @@ const createServer = async (container) => {
 
   await server.register([
     {
-      plugin: require('hapi-rate-limit'),
-      options: {},
-    },
-    {
       plugin: users,
       options: { container },
     },
