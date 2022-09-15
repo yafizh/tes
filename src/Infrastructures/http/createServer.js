@@ -12,21 +12,44 @@ const createServer = async (container) => {
     port: process.env.PORT || 5000,
   });
 
-  await server.register([
-    {
-      plugin: users,
-      options: { container },
-    },
-    {
-      plugin: authentications,
-      options: { container },
-    },
-    {
-      plugin: threads,
-      options: { container },
-    },
-  ]);
-
+  let hapi_rate_limit = null;
+  if (process.env.NODE_ENV === 'test') {
+    hapi_rate_limit = [
+      {
+        plugin: users,
+        options: { container },
+      },
+      {
+        plugin: authentications,
+        options: { container },
+      },
+      {
+        plugin: threads,
+        options: { container },
+      },
+    ];
+  } else {
+    hapi_rate_limit = [
+      {
+        plugin: require('hapi-rate-limit'),
+        options: {},
+      },
+      {
+        plugin: users,
+        options: { container },
+      },
+      {
+        plugin: authentications,
+        options: { container },
+      },
+      {
+        plugin: threads,
+        options: { container },
+      },
+    ];
+  }
+  await server.register(hapi_rate_limit);
+  
   server.ext('onPreResponse', (request, h) => {
     // mendapatkan konteks response dari request
     const { response } = request;

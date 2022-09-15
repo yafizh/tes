@@ -21,7 +21,6 @@ const testConfig = {
 };
 
 const pool = process.env.NODE_ENV === 'test' ? new Pool(testConfig) : new Pool(testConfig);
-console.log("TOKEN:"+ process.env.ACCESS_TOKEN_KEY)
 pool.connect((err, client, release) => {
   if (err) {
     return console.error('Error acquiring client', err.stack);
