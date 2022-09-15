@@ -8,7 +8,6 @@ const threads = require('../../Interfaces/http/api/threads');
 const createServer = async (container) => {
   const server = Hapi.server({
     host: "0.0.0.0",
-    // host: process.env.HOST,
     port: process.env.PORT || 5000,
   });
 
@@ -49,7 +48,7 @@ const createServer = async (container) => {
     ];
   }
   await server.register(hapi_rate_limit);
-  
+
   server.ext('onPreResponse', (request, h) => {
     // mendapatkan konteks response dari request
     const { response } = request;
