@@ -5,7 +5,6 @@ const users = require('../../Interfaces/http/api/users');
 const authentications = require('../../Interfaces/http/api/authentications');
 const threads = require('../../Interfaces/http/api/threads');
 
-// A
 const createServer = async (container) => {
   const server = Hapi.server({
     host: "0.0.0.0",
@@ -14,6 +13,10 @@ const createServer = async (container) => {
   });
 
   await server.register([
+    {
+      plugin: require('hapi-rate-limit'),
+      options: {},
+    },
     {
       plugin: users,
       options: { container },
