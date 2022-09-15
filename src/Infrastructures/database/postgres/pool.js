@@ -21,16 +21,17 @@ const testConfig = {
 };
 
 const pool = process.env.NODE_ENV === 'test' ? new Pool(testConfig) : new Pool(testConfig);
-pool.connect((err, client, release) => {
-  if (err) {
-    return console.error('Error acquiring client', err.stack);
-  }
-  client.query('SELECT NOW()', (err, result) => {
-    release();
-    if (err) {
-      return console.error('Error executing query', err.stack);
-    }
-    console.log(result.rows);
-  });
-});
+console.log("TOKEN:"+ process.env.ACCESS_TOKEN_KEY)
+// pool.connect((err, client, release) => {
+//   if (err) {
+//     return console.error('Error acquiring client', err.stack);
+//   }
+//   client.query('SELECT NOW()', (err, result) => {
+//     release();
+//     if (err) {
+//       return console.error('Error executing query', err.stack);
+//     }
+//     console.log(result.rows);
+//   });
+// });
 module.exports = pool;
