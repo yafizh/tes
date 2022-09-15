@@ -6,7 +6,7 @@ const routes = (handler) => [
     options: {
       plugins: {
         'hapi-rate-limit': {
-          pathLimit: 90,
+          pathLimit: 81,
         },
       },
     },
@@ -18,7 +18,7 @@ const routes = (handler) => [
     options: {
       plugins: {
         'hapi-rate-limit': {
-          pathLimit: 90,
+          pathLimit: 81,
         },
       },
     },
@@ -30,7 +30,7 @@ const routes = (handler) => [
     options: {
       plugins: {
         'hapi-rate-limit': {
-          pathLimit: 90,
+          pathLimit: 81,
         },
       },
     },
@@ -42,7 +42,7 @@ const routes = (handler) => [
     options: {
       plugins: {
         'hapi-rate-limit': {
-          pathLimit: 90,
+          pathLimit: 81,
         },
       },
     },
